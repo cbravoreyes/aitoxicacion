@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detector de AITOXICACIÓN - Carlos Bravo Reyes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+    h1, h2 {
+      color: #2c3e50;
+    }
+    .question {
+      margin-bottom: 20px;
+    }
+    .result {
+      margin-top: 30px;
+      padding: 15px;
+      border-radius: 10px;
+      background-color: #ecf0f1;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #2980b9;
+    }
+    .footer {
+      margin-top: 40px;
+      font-size: 0.9em;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <h1>🧠 Detector de AITOXICACIÓN</h1>
+  <p><strong>Creado por:</strong> Carlos Bravo Reyes</p>
+  <p><strong>Objetivo:</strong> Detectar si estás saturado de herramientas o contenido de IA.</p>
+
+  <form id="quizForm">
+    <div class="question">
+      <p>1. ¿Cuántas herramientas de IA usas regularmente en una semana?</p>
+      <input type="radio" name="q1" value="1"> 1-2<br>
+      <input type="radio" name="q1" value="2"> 3-5<br>
+      <input type="radio" name="q1" value="3"> Más de 5<br>
+    </div>
+
+    <div class="question">
+      <p>2. ¿Con qué frecuencia consultas una IA para resolver tareas o tomar decisiones?</p>
+      <input type="radio" name="q2" value="1"> Raramente<br>
+      <input type="radio" name="q2" value="2"> A menudo<br>
+      <input type="radio" name="q2" value="3"> Casi siempre<br>
+    </div>
+
+    <div class="question">
+      <p>3. ¿Te sientes abrumado por la cantidad de herramientas o resultados generados por IA?</p>
+      <input type="radio" name="q3" value="1"> No<br>
+      <input type="radio" name="q3" value="2"> A veces<br>
+      <input type="radio" name="q3" value="3"> Sí, frecuentemente<br>
+    </div>
+
+    <div class="question">
+      <p>4. ¿Has dejado de usar tu propio criterio porque "la IA ya lo hace mejor"?</p>
+      <input type="radio" name="q4" value="1"> Nunca<br>
+      <input type="radio" name="q4" value="2"> A veces lo pienso<br>
+      <input type="radio" name="q4" value="3"> Sí, me pasa seguido<br>
+    </div>
+
+    <div class="question">
+      <p>5. ¿Has sentido culpa, frustración o dependencia por el uso de IA?</p>
+      <input type="radio" name="q5" value="1"> No<br>
+      <input type="radio" name="q5" value="2"> Ocasionalmente<br>
+      <input type="radio" name="q5" value="3"> Sí, claramente<br>
+    </div>
+
+    <button type="button" onclick="calcularResultado()">Calcular resultado</button>
+  </form>
+
+  <div class="result" id="resultado"></div>
+
+  <div class="footer">
+    <p>Para más información, visita: <a href="https://bit.ly/aitoxicacion" target="_blank">https://bit.ly/aitoxicacion</a></p>
+  </div>
+
+  <script>
+    function calcularResultado() {
+      const form = document.forms["quizForm"];
+      let total = 0;
+      for (let i = 1; i <= 5; i++) {
+        const respuesta = form[`q${i}`].value;
+        total += parseInt(respuesta);
+      }
+
+      let nivel = "";
+      let mensaje = "";
+
+      if (total <= 9) {
+        nivel = "Bajo";
+        mensaje = "Tienes un buen equilibrio. Sigues siendo crítico y selectivo con tu uso de IA.";
+      } else if (total <= 13) {
+        nivel = "Moderado";
+        mensaje = "¡Atención! Podrías estar delegando demasiado a la IA. Considera reflexionar más antes de usarla.";
+      } else {
+        nivel = "Alto";
+        mensaje = "⚠ Necesitas una pausa. Estás en riesgo de 'aitoxicación'. Establece límites y redescubre tu pensamiento propio.";
+      }
+
+      const sugerencias = `
+        <ul>
+          <li>Limita el uso diario de herramientas de IA.</li>
+          <li>Haz al menos una tarea al día sin IA.</li>
+          <li>Evalúa críticamente cada resultado generado por IA.</li>
+          <li>Curación de contenidos: selecciona, clasifica y contrasta fuentes.</li>
+          <li>Establece pausas digitales diarias sin IA.</li>
+        </ul>
+      `;
+
+      document.getElementById("resultado").innerHTML = `
+        <h2>Nivel de AITOXICACIÓN: ${nivel}</h2>
+        <p>${mensaje}</p>
+        <h3>Sugerencias de Desintoxicación:</h3>
+        ${sugerencias}
+      `;
+    }
+  </script>
+</body>
+</html>
