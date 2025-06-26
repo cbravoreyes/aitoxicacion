@@ -29,14 +29,31 @@
       border: none;
       border-radius: 5px;
       cursor: pointer;
+      transition: transform 0.2s ease, background-color 0.3s ease;
     }
     button:hover {
       background-color: #2980b9;
+      transform: scale(1.05);
     }
     .footer {
       margin-top: 40px;
       font-size: 0.9em;
       color: #555;
+    }
+    .extra-button {
+      margin-top: 15px;
+      display: inline-block;
+    }
+    .extra-button button {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(52, 152, 219, 0.7); }
+      70% { box-shadow: 0 0 0 10px rgba(52, 152, 219, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(52, 152, 219, 0); }
     }
   </style>
 </head>
@@ -121,6 +138,11 @@
           <li>Curación de contenidos: selecciona, clasifica y contrasta fuentes.</li>
           <li>Establece pausas digitales diarias sin IA.</li>
         </ul>
+        <div class="extra-button">
+          <a href="https://www.perplexity.ai/search?q=Como+disminuir+el+nivel+de+aitoxicacion+o+en+otras+palabras+como+disminuir+mi+consumo+de+herramientas+y+noticias+sobre+IA" target="_blank">
+            <button type="button">🔍 Otras sugerencias</button>
+          </a>
+        </div>
       `;
 
       document.getElementById("resultado").innerHTML = `
@@ -133,3 +155,4 @@
   </script>
 </body>
 </html>
+
